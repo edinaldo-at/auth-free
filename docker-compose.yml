@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    container_name: auth_free_api
+    restart: always
+    command: ["/bin/bash", "./scripts/rails_server.sh"]
+    volumes:
+      - ./api:/api
+    env_file:
+      - '.env'
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    networks:
+      - net-auth-free
+    
+  proxy:
+    build:
+      context: .
+      dockerfile: ./proxy/Dockerfile
+    container_name: proxy
+    restart: always
+    ports:
+      - "80:80"
+    networks:
+    - net-auth-free
+
+  db:
+    image: postgres:12.8
+    restart: always
+    env_file:
+      - '.env'
+    command: "
+        postgres
+          -c max_connections=200
+          -c logging_collector=on
+          -c log_min_messages=LOG
+          -c log_directory=/var/log/postgresql"
+    ports:
+        - 5432:5432
+    volumes:
+        - ./data/postgres-data:/var/lib/postgresql/data
+        - ./logs/postgres:/var/log/postgresql
+    networks:
+    - net-auth-free
+
+networks:
+  net-auth-free:
+
+volumes:
+  api:
+  data:
+  logs:

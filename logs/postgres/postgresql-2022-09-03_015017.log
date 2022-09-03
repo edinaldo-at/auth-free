@@ -1,0 +1,7 @@
+2022-09-03 01:50:17.185 -03 [70] LOG:  database system was shut down at 2022-09-03 01:50:17 -03
+2022-09-03 01:50:17.194 -03 [1] LOG:  database system is ready to accept connections
+2022-09-03 01:51:19.516 -03 [1] LOG:  received fast shutdown request
+2022-09-03 01:51:19.523 -03 [1] LOG:  aborting any active transactions
+2022-09-03 01:51:19.524 -03 [1] LOG:  background worker "logical replication launcher" (PID 76) exited with exit code 1
+2022-09-03 01:51:19.524 -03 [71] LOG:  shutting down
+2022-09-03 01:51:19.578 -03 [1] LOG:  database system is shut down

@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: <%= ENV['BD_HOST'] %>
+  username: <%= ENV['BD_USER'] %>
+  password: <%= ENV['DB_PASS'] %>
+  pool: 5
+
+development:
+  <<: *default
+  database: auth_free_development
+
+test:
+  <<: *default
+  database: auth_free_test
+
+production:
+  <<: *default
+  database: auth_free_production
