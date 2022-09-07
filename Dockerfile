@@ -3,6 +3,31 @@ FROM ruby:3.1.2
 # Atualização do sistema
 RUN apt-get update
 
+RUN apt-get install -y build-essential \
+                       autoconf \
+                       libssl-dev \
+                       libyaml-dev \
+                       libreadline-dev \
+                       zlib1g-dev \
+                       libpq-dev \
+                       curl \
+                       ruby-full \
+                       git-core \
+                       libsqlite3-dev \
+                       sqlite3 \
+                       libxml2-dev \
+                       libxslt1-dev \
+                       libcurl4-openssl-dev \
+                       software-properties-common \
+                       libgdbm-dev \
+                       libncurses5-dev \
+                       automake \
+                       libtool \
+                       bison \
+                       libffi-dev \
+                       libpq-dev \
+                       postgresql-client
+
 # Set timezone
 RUN cp /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 RUN echo "America/Sao_Paulo" >  /etc/timezone
@@ -19,9 +44,6 @@ RUN apt-get update && apt-get install -y nodejs yarn
 
 # Set rails env variable
 ARG bundle_options_var='--without development test'
-
-# Install required libraries and dependencies
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev postgresql-client
 
 # Application path inside container
 ENV APP_ROOT /api

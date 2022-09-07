@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 services:
   app:
@@ -21,13 +21,13 @@ services:
     build:
       context: .
       dockerfile: ./proxy/Dockerfile
-    container_name: proxy
+    container_name: auth_proxy
     restart: always
     ports:
       - "80:80"
     networks:
     - net-auth-free
-
+  
   db:
     image: postgres:12.8
     restart: always
@@ -42,11 +42,10 @@ services:
     ports:
         - 5432:5432
     volumes:
-        - ./data/postgres-data:/var/lib/postgresql/data
-        - ./logs/postgres:/var/log/postgresql
+        - ./data:/var/lib/postgresql/data
+        - ./logs:/var/log/postgresql
     networks:
     - net-auth-free
-
 networks:
   net-auth-free:
 

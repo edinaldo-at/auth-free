@@ -30,6 +30,6 @@
 data
 log
 /data
-/log
+/logs
 ./data
-./log
+./logs

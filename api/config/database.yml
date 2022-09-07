@@ -1,9 +1,9 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: <%= ENV['BD_HOST'] %>
-  username: <%= ENV['BD_USER'] %>
-  password: <%= ENV['DB_PASS'] %>
+  host: <%= ENV["DB_HOST"] %>
+  username: <%= ENV["DB_USER"] %>
+  password: <%= ENV["DB_PASS"] %>
   pool: 5
 
 development:
